@@ -1,0 +1,17 @@
+title: ProductHunt Function Pack
+description: Functions for accessing your ProductHunt info
+image:
+  src: https://logo.clearbit.com/producthunt.com
+  alt: ProductHunt logo
+functions:
+prompts:
+  - element: auth
+    name: auth
+    title: Connect to ProductHunt
+    description: |
+      Connect to your ProductHunt account to connect the functions to your data
+    connection:
+      connection_type: producthunt
+    form_items:
+      - name: producthunt_connection
+        value: ''
