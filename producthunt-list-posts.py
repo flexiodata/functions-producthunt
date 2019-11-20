@@ -2,11 +2,25 @@
 # ---
 # name: producthunt-list-posts
 # deployed: true
-# title: ProductHunt List Posts
+# title: Product Hunt List Posts
 # description: Returns a list of producthunt posts for today
 # params:
+#   - name: properties
+#     type: array
+#     description: The properties to return (defaults to all properties). See "Notes" for a listing of the available properties.
+#     required: false
 # examples:
-# notes:
+#   - '*'
+#   - '"id, name, url, tagline"'
+# notes: |
+#   The following properties are allowed:
+#     * `id`: the id for the product post
+#     * `name`: the name of the product being featured
+#     * `url`: the url of the product being featured
+#     * `tagline`: the tagline of the product being featured
+#     * `description`: a description of the product being featured
+#     * `createdAt`: the date the product post was created
+#     * `featuredAt`: the date the product was featured
 # ---
 
 import json
