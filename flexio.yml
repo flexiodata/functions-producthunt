@@ -4,6 +4,7 @@ image:
   src: https://logo.clearbit.com/producthunt.com
   alt: ProductHunt logo
 functions:
+  - path: producthunt-list-posts.py
 prompts:
   - element: auth
     name: auth
