@@ -10,7 +10,7 @@
 #     description: The properties to return (defaults to all properties). See "Notes" for a listing of the available properties.
 #     required: false
 # examples:
-#   - '*'
+#   - '"*"'
 #   - '"id, name, url, tagline"'
 # notes: |
 #   The following properties are allowed:
