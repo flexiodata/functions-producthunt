@@ -1,7 +1,7 @@
 title: Product Hunt Function Pack
 description: Functions for accessing your Product Hunt info
 image:
-  src: https://logo.clearbit.com/producthunt.com
+  src: https://static.flex.io/assets/logos2/product-hunt.png
   alt: Product Hunt logo
 functions:
   - path: producthunt-list-posts.py
