@@ -7,20 +7,33 @@
 # params:
 #   - name: properties
 #     type: array
-#     description: The properties to return (defaults to all properties). See "Notes" for a listing of the available properties.
+#     description: The properties to return (defaults to all properties). See "Returns" for a listing of the available properties.
 #     required: false
+# returns:
+#   - name: id
+#     type: string
+#     description: The id for the product post
+#   - name: name
+#     type: string
+#     description: The name of the product being featured
+#   - name: url
+#     type: string
+#     description: The url of the product being featured
+#   - name: tagline
+#     type: string
+#     description: The tagline of the product being featured
+#   - name: description
+#     type: string
+#     description: A description of the product being featured
+#   - name: createdAt
+#     type: string
+#     description: The date the product post was created
+#   - name: featuredAt
+#     type: string
+#     description: The date the product was featured
 # examples:
 #   - '"*"'
 #   - '"id, name, url, tagline"'
-# notes: |
-#   The following properties are allowed:
-#     * `id`: the id for the product post
-#     * `name`: the name of the product being featured
-#     * `url`: the url of the product being featured
-#     * `tagline`: the tagline of the product being featured
-#     * `description`: a description of the product being featured
-#     * `createdAt`: the date the product post was created
-#     * `featuredAt`: the date the product was featured
 # ---
 
 import json
