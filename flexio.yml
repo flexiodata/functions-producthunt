@@ -4,7 +4,7 @@ image:
   src: https://static.flex.io/assets/logos2/product-hunt.png
   alt: Product Hunt logo
 functions:
-  - path: producthunt-list-posts.py
+  - path: producthunt-posts.py
 prompts:
   - element: auth
     name: auth
