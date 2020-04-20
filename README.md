@@ -5,7 +5,7 @@ Product Hunt is the premier website that enables users share and discover new pr
 Here is an example:
 
 ```
-=FLEX("YOUR_TEAM_NAME/producthunt-list-posts")
+=FLEX("YOUR_TEAM_NAME/producthunt-posts")
 ```
 
 ## Prerequisites
