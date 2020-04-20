@@ -1,8 +1,8 @@
 
 # ---
-# name: producthunt-list-posts
+# name: producthunt-posts
 # deployed: true
-# title: Product Hunt List Posts
+# title: Product Hunt Posts
 # description: Returns a list of producthunt posts for today
 # params:
 #   - name: properties
