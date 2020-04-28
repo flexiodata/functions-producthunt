@@ -1,10 +1,43 @@
 title: Product Hunt
 description: Functions for accessing your Product Hunt info
+
 image:
   src: https://static.flex.io/assets/logos2/product-hunt.png
   alt: Product Hunt logo
+
 functions:
   - path: producthunt-posts.py
+
+templates:
+  - name: search-new-posts
+    title: 'Search and filter posts on Product Hunt'
+    description: 'Import and filter current posts on Product Hunt in your spreadsheet'
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+  - name: search-new-jobs
+    title: 'Lookup new jobs on Product Hunt'
+    description: 'Search and filter current jobs listed on Product Hunt'
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+  - name: search-maker-activity
+    title: 'Lookup maker activity on Product Hunt'
+    description: 'Search and filter recent maker activity on Product Hunt'
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+  - name: search-past-posts 
+    title: 'Lookup past Product Hunt posts'
+    description: 'Search and filterpast posts on Product Hunt based on a date'
+    gsheets_spreadsheet_id: ''
+    excel_spreadsheet_path: ''
+    in_production: false
+    in_staging: false
+
 prompts:
   - element: auth
     name: auth
