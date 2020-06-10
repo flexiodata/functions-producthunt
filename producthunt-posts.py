@@ -53,9 +53,7 @@ def flexio_handler(flex):
     # get the api key from the variable input
     auth_token = dict(flex.vars).get('producthunt_connection',{}).get('access_token')
     if auth_token is None:
-        flex.output.content_type = "application/json"
-        flex.output.write([[""]])
-        return
+        raise ValueError
 
     # get the input
     input = flex.input.read()
@@ -88,47 +86,41 @@ def flexio_handler(flex):
     property_map['tagline'] = 'tagline'
     property_map['description'] = 'description'
 
-    try:
+    # make the request
+    # see here for more info: https://api.producthunt.com/v2/docs
 
-        # make the request
-        # see here for more info: https://api.producthunt.com/v2/docs
+    url = 'https://api.producthunt.com/v2/api/graphql'
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + auth_token,
+        'Host': 'api.producthunt.com'
+    }
+    columns = list(property_map.values())
+    data = { "query": "query { posts { edges { node {" + " ".join(columns) + " } } } }" }
 
-        url = 'https://api.producthunt.com/v2/api/graphql'
-        headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + auth_token,
-            'Host': 'api.producthunt.com'
-        }
-        columns = list(property_map.values())
-        data = { "query": "query { posts { edges { node {" + " ".join(columns) + " } } } }" }
+    response = requests_retry_session().post(url, data=json.dumps(data), headers=headers)
+    response.raise_for_status()
+    content = response.json()
 
-        response = requests_retry_session().post(url, data=json.dumps(data), headers=headers)
-        response.raise_for_status()
-        content = response.json()
+    # get the properties to return and the property map
+    properties = [p.lower().strip() for p in input['properties']]
 
-        # get the properties to return and the property map
-        properties = [p.lower().strip() for p in input['properties']]
+    # if we have a wildcard, get all the properties
+    if len(properties) == 1 and properties[0] == '*':
+        properties = list(property_map.keys())
 
-        # if we have a wildcard, get all the properties
-        if len(properties) == 1 and properties[0] == '*':
-            properties = list(property_map.keys())
+    # build up the result
+    result = []
+    result.append(properties)
 
-        # build up the result
-        result = []
-        result.append(properties)
+    edges = content.get('data',{}).get('posts',{}).get('edges',[])
+    for item in edges:
+        row = [item.get('node').get(property_map.get(p,'')) or '' for p in properties]
+        result.append(row)
 
-        edges = content.get('data',{}).get('posts',{}).get('edges',[])
-        for item in edges:
-            row = [item.get('node').get(property_map.get(p,'')) or '' for p in properties]
-            result.append(row)
-
-        flex.output.content_type = "application/json"
-        flex.output.write(result)
-
-    except:
-        flex.output.content_type = 'application/json'
-        flex.output.write([['']])
+    flex.output.content_type = "application/json"
+    flex.output.write(result)
 
 def requests_retry_session(
     retries=3,
